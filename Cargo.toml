@@ -1,0 +1,27 @@
+[package]
+name = "link_simulator"
+version = "0.1.0"
+authors = ["Eric Reinthal <Eric.Reinthal@ptscientists.com>"]
+edition = "2018"
+
+[lib]
+name = "link"
+path = "src/lib.rs"
+
+[[bin]]
+name = "link_simulator"
+path = "src/main.rs"
+
+[[bin]]
+name = "link_test_sender"
+path = "tests/sender.rs"
+
+[[bin]]
+name = "link_test_receiver"
+path = "tests/receiver.rs"
+
+[dependencies]
+ctrlc = "3.0"
+rand = "0.3"
+term = "0.4.6"
+mio = "0.6.16"
