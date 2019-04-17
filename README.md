@@ -1,11 +1,13 @@
 # Link Simulator
 
-Rust tool for simulating an arbitrary connection between two network endpoints
-with
+Rust tool for simulating an arbitrary connection between two network endpoints.
+
+Features:
+
 - Any number of simultaneous connections with individual configurations
 - Configurable delay per link
 - Data mutation based on a fixed bit error rate to simulate space RF links
-- Rate control ( excess incoming bytes are dropped)
+- Rate control (excess incoming bytes are dropped)
 - Efficiency through zero-copy forwarding of all data packets
 - Network configuration through config files
 - Extensive network performance insight:
@@ -19,7 +21,7 @@ with
 
 ## Build Instructions
 
-Install rust on your system, then simply execute
+Install Rust on your system, then simply execute
 
 ```
 cargo build --release
@@ -34,37 +36,38 @@ configuration file according to the following syntax:
 
 
 ```
-    link_simulator [options] <file>
+link_simulator [options] <file>
 
-    options:
-        -i              Print link info on startup
-        -s              Print link statistics to stdout
-						(only works on terminals with 60+ chars per line)
-						(does not work on Windows)
-        -gLINK_NAME     Send link statistics to Grafana for specified link
-                        (repeat this option if needed)
-        -G              Send statistics of all links to Grafana
-        -p              Discard packet if bit is flipped
+options:
+    -i              Print link info on startup
+    -s              Print link statistics to stdout
+					(only works on terminals with 60+ chars per line)
+					(does not work on Windows)
+    -gLINK_NAME     Send link statistics to Grafana for specified link
+                    (repeat this option if needed)
+    -G              Send statistics of all links to Grafana
+    -p              Discard packet if bit is flipped
 
-    <file> must have the following format:
-        link_name address_in address_out bit_error_rate delay_ms max_bandwidth
-        ...
-        ...
-    (lines starting with '#' are ignored)
-    line format:
-        link_name:          String (without spaces)
-        address_{in/out}:   IPv4:Port
-        bit_error_rate:     float (0.0 ... 1.0(
-        delay_ms:           integer [ms]
-        max_bandwidth:      float [bps]
-    example:
-        Test_route localhost:2000 localhost:2001 1e-5 2000 1000000
+<file> must have the following format:
+    link_name address_in address_out bit_error_rate delay_ms max_bandwidth
+    ...
+    ...
+(lines starting with '#' are ignored)
+line format:
+    link_name:          String (without spaces)
+    address_{in/out}:   IPv4:Port
+    bit_error_rate:     float (0.0 ... 1.0(
+    delay_ms:           integer [ms]
+    max_bandwidth:      float [bps]
+example:
+    Test_route localhost:2000 localhost:2001 1e-5 2000 1000000
 ```
 
 an example routes configuration file (`routes.config`) is provided in the
 project directory.
 
 ### Grafana Integration
+
 First, set up [InfluxDB](https://www.influxdata.com/) and [Grafana](https://grafana.com/)
 - Influx DB must listen for input at UDP 127.0.0.1:8100
 - Grafana must be connected to Influx DB and the provided config file must be loaded (`/grafana/link_simulator.json`)
