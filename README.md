@@ -5,9 +5,9 @@ with
 - Any number of simultaneous connections with individual configurations
 - Configurable delay per link
 - Data mutation based on a fixed bit error rate to simulate space RF links
-- Rate control ( excess incoming bytes are dropped)
+- Rate control (excess incoming bytes are dropped)
 - Efficiency through zero-copy forwarding of all data packets
-- Network configuration through config files
+- Network configuration via config files
 - Extensive network performance insight:
     * Received bytes & packets
     * Dropped bytes & packets
@@ -66,7 +66,7 @@ project directory.
 
 ### Grafana Integration
 First, set up [InfluxDB](https://www.influxdata.com/) and [Grafana](https://grafana.com/)
-- Influx DB must listen for input at UDP 127.0.0.1:8100
+- Influx DB must listen for input at UDP `127.0.0.1:8100`
 - Grafana must be connected to Influx DB and the provided config file must be loaded (`/grafana/link_simulator.json`)
 
 ## Testing locally
