@@ -19,7 +19,7 @@ with
 
 ## Build Instructions
 
-Install rust on you system, then simply execute
+Install rust on your system, then simply execute
 
 ```
 cargo build --release
