@@ -317,19 +317,17 @@ fn run_inbound(
                             if is_full {
                                 buffer = &mut temp_buffer; // use discarding buffer
                             } else {
-                                {
-                                    let mut fifo = fifo_mutex.lock().unwrap();
-                                    start_idx = fifo.start_idx();
-                                    free_idx = fifo.free_idx();
-                                    unsafe {
-                                        // creates mutable reference to shared buffer
-                                        // the ring buffer layout guarantees only this thread is accessing
-                                        // this particular slice of the buffer at this instant
-                                        buffer = std::slice::from_raw_parts_mut(
-                                            &mut fifo.buffer()[free_idx] as *mut u8,
-                                            network_fifo::MAX_FRAME_SIZE,
-                                        );
-                                    }
+                                let mut fifo = fifo_mutex.lock().unwrap();
+                                start_idx = fifo.start_idx();
+                                free_idx = fifo.free_idx();
+                                unsafe {
+                                    // creates mutable reference to shared buffer
+                                    // the ring buffer layout guarantees only this thread is accessing
+                                    // this particular slice of the buffer at this instant
+                                    buffer = std::slice::from_raw_parts_mut(
+                                        &mut fifo.buffer()[free_idx] as *mut u8,
+                                        network_fifo::MAX_FRAME_SIZE,
+                                    );
                                 }
                             }
                         }
