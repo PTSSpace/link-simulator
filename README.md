@@ -17,7 +17,7 @@ Features:
     * Actual bandwidth
     * Internal buffer occupancy
     * Mutated bits (flips)
-- Optional Grafana integration for monitoring
+- Optional [Grafana](https://grafana.com/) integration for monitoring
 
 ## Build Instructions
 
