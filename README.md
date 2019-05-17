@@ -56,7 +56,7 @@ options:
 line format:
     link_name:          String (without spaces)
     address_{in/out}:   IPv4:Port
-    bit_error_rate:     float (0.0 ... 1.0)
+    bit_error_rate:     float (0.0 ... 1.0(
     delay_ms:           integer [ms]
     max_bandwidth:      float [bps]
 example:
