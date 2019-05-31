@@ -411,7 +411,7 @@ fn run_outbound(
     let mut is_full;
 
     // data is sent out in batches if multiple packets are ready
-    let batch_size = 950usize;
+    let batch_size = network_fifo::MAX_FRAME_SIZE;
 
     // loop forever
     while running.load(Ordering::SeqCst) {
